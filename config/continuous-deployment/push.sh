@@ -2,21 +2,21 @@
 
 setup_git() {
   echo "Setting up git account"
-  git config --global user.email "mareak@mareak.com"
-  git config --global user.name "Mareak"
+  git config --global user.email ${MAIL_GIT}
+  git config --global user.name ${USERNAME_GIT}
   echo "Done ..."
 }
 
 setup_dockerhub(){
   echo "Setting up docker account"
-  docker login -u mareak -p ${DOCKER_PWD}
+  docker login -u ${USERNAME_DOCKERHUB} -p ${DOCKER_PWD}
   echo "Done ..."
 }
 
 checkout() {
   echo -e "\nCheckout master"
   git checkout -b master
-  git remote add origin-pages https://Mareak:${TOKEN}@github.com/Mareak/webscrapping.git
+  git remote add origin-pages https://${USERNAME_GIT}:${GITLAB_TOKEN}@github.com/Mareak/webscrapping.git
   echo "Done ..."
 }
 
@@ -62,14 +62,15 @@ push_images_dockerhub(){
 
 setup_az_image_registry() {
   echo -e "Setting up azure docker registry account"
-  docker login MareackR.azurecr.io -u ${AZURE_USERNAME_REG} -p ${AZURE_PASSWORD_REG}
+  docker login ${AZURE_SERVER_REG} -u ${AZURE_USERNAME_REG} -p ${AZURE_PASSWORD_REG}
   echo "Done ..."
 }
 
 push_image_azure() {
   echo -e "Push"
-  docker tag webscrapping_deploy:latest MareackR.azurecr.io/webscrapping_deploy:$tag_incr 
-  docker push MareackR.azurecr.io/webscrapping_deploy:$tag_incr
+  docker tag webscrapping_deploy:latest ${AZURE_SERVER_REG}/webscrapping_deploy:$tag_incr 
+  docker push ${AZURE_SERVER_REG}/webscrapping_webscrapping:$tag_incr
+  docker push ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
   echo "Done ..."
 }
 
