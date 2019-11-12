@@ -34,7 +34,7 @@ resource "azurerm_container_group" "cg" {
 
   container {
     name   = "webscrapping"
-    image  = "mareackr.azurecr.io/webscrapping_deploy:${var.TAG}"
+    image  = "mareackr.azurecr.io/webscrapping_webscrapping:${var.TAG}"
     cpu    = "0.5"
     memory = "1.5"
 
