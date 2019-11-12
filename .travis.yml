@@ -1,0 +1,32 @@
+language: python
+python:
+- '3.7'
+services:
+- docker
+branches:
+  only:
+  - dev
+
+jobs:
+  include:
+    - stage: test
+      name: "Test pylint unitest"
+      script: docker-compose run webscrapping test --build --exit-code-from webscrapping
+    - stage: push
+      name: "Push on GitHub"
+			script: bash push.sh
+    - stage: deploy
+      name: "Deploy on Azure"
+      script: docker build -t run:latest -f Dockerfile.run --build-arg ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID --build-arg ARM_CLIENT_ID=$ARM_CLIENT_ID --build-arg ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET --build-arg ARM_TENANT_ID=$ARM_TENANT_ID --build-arg AZURE_USERNAME_REG=$AZURE_USERNAME_REG --build-arg AZURE_PASSWORD_REG=$AZURE_PASSWORD_REG --build-arg AZURE_SERVER_REG=$AZURE_SERVER_REG --build-arg TAG=$TAG .
+			script: docker run run:latest
+
+stages:
+  - test
+  - push
+  - deploy
+
+env:
+  global:
+  - TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+  - secure: IX7LvDIWXvpahIE4yxXuuyJ9g4ek3E6O5v5LJ6iElstH5XppO+e0xNuEYXmatrP0b6fcX53RtwLYZiyWcY/EX8Rr/bww83QF90R6cRTBhtkZITRHjD2l+LNpTErb+THWXMBfj+rgSLBMRZJphb0MfVrJvKrc/Ijey2hLvgDuJY8L/etjcDjx1/ogIEuI7meeIS6dP3E/cVvcNwzOVLcDCYTTZeUDhchl+aSFKF/2QKNCoAMZ9+Hl5rmfcPHIN7zSILaehjr5Vo6K6ulUi9ZIXplP3EUapF+uoqy2mWSoSFRniUCwa4MRHkafzBYTLuYGHrG860RV8gISAwgmUJSriez2AV9+zQdAeNCZ685MD22bwWriD27fKdihusYmn6BYLznAZKrCnR7rM5N+r8vZvq55jAUk0ol9MyRueRixIwWeJvjk1GpkZvR7FhR1HqkeFlx4fsMgyJH+EOoUccUBGndTXMmUnlF9+F154UdAhL5r4FBCsJl/5tEIRbuKo19SBu+mpXRZEh8y6E+vMA8CS4FOzC1SH009h9ot9CV8brew4ckE8B+p+EAsRZ8QmfnZwoi4QVEVHXMRiIGIeZq5Oa6UHjx0YphHOQeDtZdiJ/hKPWl4EAouxKasGnIRl/Dos4qQcQI2A8QSe9Wj/+4bZmOPzB2iBqZE5z+OAKd70UY=
+  - secure: qHKnZy6BYKlG5g6nsBINkhaCK005VJ70kXa/srhrXw+8aRoze9VIUPuxkNlznbYgxZV3T/rZlg349bNdiQnVKO6NsOJAd6cm/2wOvwWzcv1ObUMQRtnoSYmfR6tScAmqPhwMeYKod7NoNrMxAR85rRnBJDnwXNpiYUK+ApWGwyDhS/W0gCV+5uDe7tZUHeBUo1Mk8L9GeTq7+uSgFEAQ/FQ91nZYx+1gFGxIbA6FkWquGJtRN1MZpx1jzRoPttOpbW7kAfdtdtvDUYluNcRk9l239+NaK2ltolHoDzBx1yyDKGsHQiO2VutPAsb96mmmDOHXM7QeFyBhWWLWOpSrz/yn8Zvd0UK5YY9+uvDP60OExYYtbG+g92JgQwtcyUaPJgis3FTx7/FjwSpG7LBWmYdTp0o033VmUBN6GpV04mlGw/jNLHiRy619AxL4J53ZeRLXPyTlBunAODhkgKGSNkssYN9EXQui+Tb2O18VQWdkvFbzReR8p2Pqf5u4NOj+El1k+mFgFJlZBg9qRFo8kWmeD587SUuSkd1od43aL8PKtdaIyJSs+H93nKZFnxr2BvAYbqc2CY8u/vqwI8ul72fiJa03CO3JsAO1UvdwKkawrulGAgGDRHQPToBV4zHSpIbSml9w4/LpD3pj7rb3de1Tqf32i1UV6LP2++Xid00=
