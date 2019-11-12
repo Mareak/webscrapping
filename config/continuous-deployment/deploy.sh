@@ -5,7 +5,7 @@ export() {
 	az account set --subscription=$ARM_SUBSCRIPTION_ID
     cd ./config/continuous-deployment/
 	terraform init
-    TAG='v1.'$((${TAG:3}+1))
+    #TAG='v1.'$((${TAG:3}+1))
 	terraform apply -var TAG=$TAG -var AZURE_USERNAME_REG=$AZURE_USERNAME_REG -var AZURE_PASSWORD_REG=$AZURE_PASSWORD_REG -var AZURE_SERVER_REG=$AZURE_SERVER_REG -auto-approve
 }
 
