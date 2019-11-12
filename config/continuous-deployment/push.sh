@@ -9,7 +9,7 @@ setup_git() {
 
 setup_dockerhub(){
   echo "Setting up docker account"
-  docker login -u ${USERNAME_DOCKERHUB} -p ${DOCKER_PWD}
+  docker login -u ${USERNAME_DOCKERHUB} -p ${PASSWORD_DOCKERHUB}
   echo "Done ..."
 }
 
