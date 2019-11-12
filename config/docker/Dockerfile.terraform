@@ -27,4 +27,4 @@ RUN apt update && apt install -y ca-certificates curl apt-transport-https lsb-re
 	&& export TER_VER="0.12.13" && wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_linux_amd64.zip \
 	&& unzip terraform_${TER_VER}_linux_amd64.zip && mv terraform /usr/local/bin/
 
-CMD ["bash", "./config/docker/Dockerfile.terraform/deploy.sh"]
+CMD ["bash", "./config/continuous-deployment/deploy.sh"]
