@@ -82,4 +82,5 @@ versionning
 merge_code
 create_images
 push_images_dockerhub
-
+setup_az_image_registry
+push_image_azure
