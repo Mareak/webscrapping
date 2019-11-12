@@ -50,7 +50,7 @@ create_images(){
   echo -e "\nCreate images to deploy"
   docker build -t ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr -f ./config/docker/Dockerfile.webscrapping .
   docker build -t ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr -f ./config/docker/Dockerfile.nginx .
-  echo "Sucess"
+  echo "Success"
 }
 
 push_images_dockerhub(){
@@ -68,7 +68,7 @@ setup_az_image_registry() {
 
 push_image_azure() {
   echo -e "Push"
-  docker tag ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr ${AZURE_SERVER_REG}/webscrapping_webscraping:$tag_incr
+  docker tag ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr ${AZURE_SERVER_REG}/webscrapping_webscrapping:$tag_incr
   docker tag ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
   docker push ${AZURE_SERVER_REG}/webscrapping_webscrapping:$tag_incr
   docker push ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
