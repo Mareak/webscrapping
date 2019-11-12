@@ -11,7 +11,7 @@ jobs:
   include:
     - stage: test
       name: "Test pylint unitest"
-      script: docker-compose --build --exit-code-from webscrapping run webscrapping test     
+      script: docker-compose run webscrapping test
     - stage: push
       name: "Push on GitHub"
       script: bash push.sh
