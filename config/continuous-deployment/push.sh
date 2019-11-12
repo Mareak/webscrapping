@@ -34,7 +34,7 @@ versionning() {
   echo "Done ..."
   
   echo -e "\nIncrement version"
-  sed -i -r 's/v1\.\w+/'${tag_incr}'/g' templates/*
+  sed -i -r 's/v1\.\w+/'${tag_incr}'/g' ./app/templates/*
   git commit -am $tag_incr
   echo "Done ..."
 }
