@@ -1,0 +1,84 @@
+@import 'https://fonts.googleapis.com/css?family=Press+Start+2P:300, 400, 500, 700';
+
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('font/terminus.ttf')  format('truetype')
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-family: 'MyWebFont', sans-serif;
+  position: relative;
+}
+
+header.page-header {
+    overflow: hidden;
+    color: green;
+    text-shadow: 1px 1px 0 black;
+    padding: 30px 10px;
+    text-align: center;
+    background-attachment: scroll;
+}
+
+ul {
+  list-style-type: none;
+  margin: 20px;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-image: linear-gradient(black, green);
+}
+
+.active {
+  background-image: linear-gradient(black, green);
+}
+
+
+.shell {
+    background-image: url("images/shell.png");
+    background-size: 100%;
+}
+
+article {
+    background-color: #1F1F29;
+    padding-bottom: 10px;
+}
+
+.title {
+    padding: 50px 0 20px;
+    color: white;
+    font-size: large;
+}
+
+.title_search {
+    padding: 20px 5 20px;
+    color: white;
+    font-size: large;
+}
+.article{
+    color: green;
+}
+
+footer{
+    overflow: hidden;
+    color: green;
+    text-shadow: 1px 1px 0 black;
+    padding: 30px 10px;
+    text-align: center;
+}

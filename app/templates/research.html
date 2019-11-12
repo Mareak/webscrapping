@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="shortcut icon" type="image/png" href="static/images/favicon.ico"/>
+    <title>Web project</title>
+</head>
+<body>
+<header class="page-header">
+    <h2>My awesome web-project</h2>
+</header>
+<div class="shell"></div>
+<nav>
+    <ul>
+        <li><a href="/"><h4>Home</h4></a></li>
+        <li><a href="/cache"><h4>Cache</h4></a></li>
+        <li><a href="/contact"><h4>Contact</h4></a></li>
+        <li style="float:right"><a href="/about"><h4>About</h4></a></li>
+    </ul>
+</nav>
+    <div class="shell">&nbsp;</div>
+    <article>
+        <div class="article">> [response time : {{g.request_time()}}]</div>
+        {%for article in content%}
+            <div class="title">
+                > {{article['title']}} : <a href={{article["link"]}}>link</a>
+            </div>
+            <div class="article">
+                > {{article['text']}} ...
+                > author : {{article['author']}}
+            </div>
+        {%endfor%}
+    </article>
+</body>
+<footer>
+   <h3>© 2019 John Doe All Rights Reserved - v1.xx</h3>
+</footer>
+</html>
