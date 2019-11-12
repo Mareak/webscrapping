@@ -48,15 +48,15 @@ merge_code() {
 
 create_images(){
   echo -e "\nCreate images to deploy"
-  docker build -t mareak/webscrapping_webscrapping:$tag_incr -f ./config/docker/Dockerfile.webscrapping .
-  docker build -t mareak/webscrapping_nginx:$tag_incr -f ./config/docker/Dockerfile.nginx .
+  docker build -t ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr -f ./config/docker/Dockerfile.webscrapping .
+  docker build -t ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr -f ./config/docker/Dockerfile.nginx .
   echo "Sucess"
 }
 
 push_images_dockerhub(){
   echo -e "\nPush new image to dockerhub"
-  docker push mareak/webscrapping_webscrapping:$tag_incr
-  docker push mareak/webscrapping_nginx:$tag_incr
+  docker push ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr
+  docker push ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr
   echo "Success"
 }
 
@@ -68,7 +68,8 @@ setup_az_image_registry() {
 
 push_image_azure() {
   echo -e "Push"
-  docker tag webscrapping_deploy:latest ${AZURE_SERVER_REG}/webscrapping_deploy:$tag_incr 
+  docker tag ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr ${AZURE_SERVER_REG}/webscrapping_webscraping:$tag_incr
+  docker tag ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
   docker push ${AZURE_SERVER_REG}/webscrapping_webscrapping:$tag_incr
   docker push ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
   echo "Done ..."
