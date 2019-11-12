@@ -16,7 +16,7 @@ setup_dockerhub(){
 checkout() {
   echo -e "\nCheckout master"
   git checkout -b master
-  git remote add origin-pages https://Mareak:${TOKEN}@github.com/Mareak/webscrapping-medium.git
+  git remote add origin-pages https://Mareak:${TOKEN}@github.com/Mareak/webscrapping.git
   echo "Done ..."
 }
 
