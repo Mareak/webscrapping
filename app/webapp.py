@@ -37,9 +37,9 @@ def before_request():
 def index():
     """ Index du site  """
     message = 'Bienvenue sur le site de scrapping medium :'
-    mariadb_connection = mariadb.connect(host="mariadb",user=os.environ["MYSQL_USER"], password=os.environ["MYSQL_PASSWORD"], database=os.environ["MYSQL_DATABASE"])
-    cursor = mariadb_connection.cursor()
-    IP=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    #mariadb_connection = mariadb.connect(host="mariadb",user=os.environ["MYSQL_USER"], password=os.environ["MYSQL_PASSWORD"], database=os.environ["MYSQL_DATABASE"])
+    #cursor = mariadb_connection.cursor()
+    #ip_add=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     return render_template('index.html', message=message)
 
 @app.route('/contact', methods=['GET'])
