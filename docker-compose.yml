@@ -5,6 +5,10 @@ services:
     build:
       context: .
       dockerfile: ./config/docker/Dockerfile.webscrapping
+    environment:
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
     networks:
       - webscrapnet
   mariadb:
