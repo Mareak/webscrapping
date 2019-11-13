@@ -16,7 +16,7 @@ jobs:
         - export MYSQL_DATABASE=$MYSQL_DATABASE
         - export MYSQL_USER=$MYSQL_USER
         - export MYSQL_PASSWORD=$MYSQL_PASSWORD
-        - docker-compose run mariadb -d 
+        - docker-compose -d run mariadb  
         - docker-compose run webscrapping test
     - stage: push
       name: "Push on gitHub/dockerHub/azureRepo"
