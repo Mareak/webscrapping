@@ -14,7 +14,7 @@ app.secret_key = os.environ["SECRET_KEY"]
 
 mariadb_connection = mariadb.connect(host="mariadb",user=os.environ["MYSQL_USER"], password=os.environ["MYSQL_PASSWORD"], database=os.environ["MYSQL_DATABASE"])
 cursor = mariadb_connection.cursor()
-mycursor.execute("CREATE TABLE visit (ip VARCHAR(255), datetime VARCHAR(255))")
+cursor.execute("CREATE TABLE visit (ip VARCHAR(255), datetime VARCHAR(255))")
 mariadb_connection.commit()
 
 # url => $(IP)/api?search=test  curl => curl -X GET "$(IP)/api?search=test"
@@ -45,8 +45,8 @@ def index():
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     ip_add=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
 	sql = "INSERT INTO visit (name, datetimes) VALUES (%s, %s)"
-    val = (ip_add,dt_string)
-	mycursor.execute(sql, val)
+    val = (ip_add, dt_string)
+	cursor.execute(sql, val)
     mariadb_connection.commit()
     return render_template('index.html', message=message)
 
