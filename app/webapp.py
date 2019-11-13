@@ -6,16 +6,12 @@ from flask_restful import Resource, Api
 from flask import Flask, render_template, session, request, g, jsonify
 import scrap
 import os
-import mysql.connector as mariadb
+import mariasql
 
 app = Flask(__name__)
 api = Api(app)
 app.secret_key = os.environ["SECRET_KEY"]
 
-mariadb_connection = mariadb.connect(host="mariadb",user=os.environ["MYSQL_USER"], password=os.environ["MYSQL_PASSWORD"], database=os.environ["MYSQL_DATABASE"])
-cursor = mariadb_connection.cursor()
-cursor.execute("CREATE TABLE visit (ip VARCHAR(255), datetime VARCHAR(255))")
-mariadb_connection.commit()
 
 # url => $(IP)/api?search=test  curl => curl -X GET "$(IP)/api?search=test"
 class Research(Resource):
@@ -41,14 +37,10 @@ def before_request():
 def index():
     """ Index du site  """
     message = 'Bienvenue sur le site de scrapping medium :'
-    now=datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    ip_add=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-	sql = "INSERT INTO visit (name, datetimes) VALUES (%s, %s)"
-    val = (ip_add, dt_string)
-	cursor.execute(sql, val)
-    mariadb_connection.commit()
+    ip_add = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    mariasql.insert_table(ip_add)
     return render_template('index.html', message=message)
+
 
 @app.route('/contact', methods=['GET'])
 def contact():
