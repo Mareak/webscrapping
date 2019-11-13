@@ -7,6 +7,16 @@ services:
       dockerfile: ./config/docker/Dockerfile.webscrapping
     networks:
       - webscrapnet
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    networks:
+      - webscrapnet
   nginx:
     container_name: nginx
     build:

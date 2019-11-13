@@ -14,7 +14,12 @@ jobs:
       script: docker-compose run webscrapping test
     - stage: push
       name: "Push on gitHub/dockerHub/azureRepo"
-      script: bash ./config/continuous-deployment/push.sh
+      script:
+        - export MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+        - export MYSQL_DATABASE=$MYSQL_DATABASE
+        - export MYSQL_USER=$MYSQL_USER
+        - export MYSQL_PASSWORD=$MYSQL_PASSWORD 
+        - bash ./config/continuous-deployment/push.sh
     - stage: deploy
       name: "Create terraform and deploy"
       script: 
