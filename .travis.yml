@@ -12,6 +12,7 @@ jobs:
     - stage: test
       name: "Test pylint unitest"
       script:
+        - export SECRET_KEY=$SECRET_KEY
         - export MYSQL_DATABASE=$MYSQL_DATABASE
         - export MYSQL_USER=$MYSQL_USER
         - export MYSQL_PASSWORD=$MYSQL_PASSWORD

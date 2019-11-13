@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: ./config/docker/Dockerfile.webscrapping
     environment:
+      - SECRET_KEY
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
