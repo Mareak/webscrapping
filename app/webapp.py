@@ -10,7 +10,7 @@ import mysql.connector as mariadb
 
 app = Flask(__name__)
 api = Api(app)
-app.secret_key = "ITS A SECRET"
+app.secret_key = os.environ["SECRET_KEY"]
 
 
 # url => $(IP)/api?search=test  curl => curl -X GET "$(IP)/api?search=test"
