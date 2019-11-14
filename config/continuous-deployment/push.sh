@@ -75,6 +75,7 @@ push_image_azure() {
   echo "Done ..."
 }
 
+
 setup_git
 setup_dockerhub
 checkout
