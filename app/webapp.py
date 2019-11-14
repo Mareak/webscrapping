@@ -2,10 +2,12 @@
 
 import time
 import unittest
+import os
+#flask modules
 from flask_restful import Resource, Api
 from flask import Flask, render_template, session, request, g, jsonify
+#specific modules
 import scrap
-import os
 import mariasql
 
 app = Flask(__name__)
