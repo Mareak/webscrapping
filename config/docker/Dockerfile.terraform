@@ -20,10 +20,10 @@ ENV ARM_CLIENT_ID=$ARM_CLIENT_ID \
 	ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID \
 	TAG=$TAG
 
-RUN apt update && apt install -y ca-certificates curl apt-transport-https lsb-release gnupg wget unzip \
+RUN apt update -qq && apt install -qqy ca-certificates curl apt-transport-https lsb-release gnupg wget unzip \
 	&& curl -sL https://packages.microsoft.com/keys/microsoft.asc |gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
     && echo 'deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ '$(lsb_release -cs)' main' |  tee /etc/apt/sources.list.d/azure-cli.list \
-	&& apt update && apt install azure-cli \
+	&& apt update -qq && apt install -qqy azure-cli \
 	&& export TER_VER="0.12.13" && wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_linux_amd64.zip \
 	&& unzip terraform_${TER_VER}_linux_amd64.zip && mv terraform /usr/local/bin/
 

@@ -1,6 +1,7 @@
 FROM nginx
 
-RUN apt update && apt install openssl
+RUN apt update -qq && apt install -qq openssl
 
-RUN mkdir /cert
-RUN cd /cert && openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 -subj "/C=FR/ST=Paris/L=Paris/O=Global Security/OU=IT Department/CN=${HOSTNAME}"
+RUN mkdir /cert \
+	&& cd /cert \
+	&&  openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 -subj "/C=FR/ST=Paris/L=Paris/O=Global Security/OU=IT Department/CN=${HOSTNAME}"

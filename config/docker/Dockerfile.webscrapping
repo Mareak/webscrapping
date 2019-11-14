@@ -1,6 +1,7 @@
 FROM python:3.7-slim-buster
 
-RUN apt update && apt install -y make gcc && pip3 install pipenv
+RUN apt update -qq && apt install -qqy make gcc \
+	&& pip3 install pipenv
 
 COPY . .
 
