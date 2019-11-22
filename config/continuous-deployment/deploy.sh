@@ -8,7 +8,7 @@ export() {
     #TAG='v1.'$((${TAG:3}+1))
 	#terraform apply -var TAG=$TAG -var AZURE_USERNAME_REG=$AZURE_USERNAME_REG -var AZURE_PASSWORD_REG=$AZURE_PASSWORD_REG -var AZURE_SERVER_REG=$AZURE_SERVER_REG -auto-approve
 	az aks get-credentials --resource-group mareak.k8s.clusterRG --name clusterfitec
-    kubctl get pods
+    kubectl get nodes
 }
 
 export
