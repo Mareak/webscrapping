@@ -10,15 +10,16 @@ export() {
 	az aks get-credentials --resource-group $AZ_RG_K8S --name $AZ_CLUSTERNAME_K8S
     kubectl delete po,svc  --all
 	
-    sed -i 's/${MYSQL_ROOT_PASSWORD}/'$MYSQL_ROOT_PASSWORD'/g' config/continuous-deployment/kurbernetes/mariadb-deploy.yml 
-    sed -i 's/${MYSQL_DATABASE}/'$MYSQL_DATABASE'/g' config/continuous-deployment/kurbernetes/mariadb-deploy.yml config/continuous-deployment/kurbernetes/webscrapping-deploy.yml
-    sed -i 's/${MYSQL_USER}/'$MYSQL_USER'/g' config/continuous-deployment/kurbernetes/mariadb-deploy.yml config/continuous-deployment/kurbernetes/webscrapping-deploy.yml
-    sed -i 's/${MYSQL_PASSWORD}/'$MYSQL_PASSWORD'/g' config/continuous-deployment/kurbernetes/mariadb-deploy.yml config/continuous-deployment/kurbernetes/webscrapping-deploy.yml
-    sed -i 's/${SECRET_KEY}/'$SECRET_KEY'/g' config/continuous-deployment/kurbernetes/webscrapping-deploy.yml
-    sed -i 's/${TAG}/'$TAG'/g' config/continuous-deployment/kurbernetes/webscrapping-deploy.yml config/continuous-deployment/kurbernetes/nginx-deploy.yml
-    sed -i 's/${AZURE_SERVER_REG}/'$AZURE_SERVER_REG'/g' config/continuous-deployment/kurbernetes/webscrapping-deploy.yml config/continuous-deployment/kurbernetes/nginx-deploy.yml
+	cd ./config/continuous-deployment/kurbernetes/	
+    sed -i 's/${MYSQL_ROOT_PASSWORD}/'$MYSQL_ROOT_PASSWORD'/g' mariadb-deploy.yml 
+    sed -i 's/${MYSQL_DATABASE}/'$MYSQL_DATABASE'/g' mariadb-deploy.yml webscrapping-deploy.yml
+    sed -i 's/${MYSQL_USER}/'$MYSQL_USER'/g' mariadb-deploy.yml webscrapping-deploy.yml
+    sed -i 's/${MYSQL_PASSWORD}/'$MYSQL_PASSWORD'/g' mariadb-deploy.yml webscrapping-deploy.yml
+    sed -i 's/${SECRET_KEY}/'$SECRET_KEY'/g' webscrapping-deploy.yml
+    sed -i 's/${TAG}/'$TAG'/g' webscrapping-deploy.yml nginx-deploy.yml
+    sed -i 's/${AZURE_SERVER_REG}/'$AZURE_SERVER_REG'/g' webscrapping-deploy.yml nginx-deploy.yml
 	
-	kubectl apply -f ./config/continuous-deployment/kurbernetes/
+	kubectl apply -f .
 }
 
 export
