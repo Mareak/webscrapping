@@ -2,6 +2,8 @@ FROM debian:buster-slim
 
 COPY . .
 
+ARG AZ_CLUSTERNAME_K8S
+ARG AZ_RG_K8S
 ARG MYSQL_ROOT_PASSWORD
 ARG MYSQL_DATABASE
 ARG MYSQL_USER
@@ -28,7 +30,9 @@ ENV ARM_CLIENT_ID=$ARM_CLIENT_ID \
     MYSQL_DATABASE=$MYSQL_DATABASE \
     MYSQL_USER=$MYSQL_USER \
     MYSQL_PASSWORD=$MYSQL_PASSWORD \
-    SECRET_KEY=$SECRET_KEY 
+    SECRET_KEY=$SECRET_KEY \
+    AZ_RG_K8S=$AZ_RG_K8S \
+    AZ_CLUSTERNAME_K8S=$AZ_CLUSTERNAME_K8S
 
 RUN apt update -qq && apt install -qqy ca-certificates curl apt-transport-https lsb-release gnupg wget unzip \
 	&& curl -sL https://packages.microsoft.com/keys/microsoft.asc |gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
