@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
       - name: webscrapping
-        image: mareackr.azurecr.io/webscrapping_webscrapping:v1.24
+        image: ${AZURE_SERVER_REG}/webscrapping_webscrapping:${TAG}
         ports:
         - containerPort: 5000
           protocol: TCP
         env:
         - name: SECRET_KEY
-          value: "SECRET"
+          value: ${SECRET_KEY}
         - name: MYSQL_DATABASE
-          value: "wordpress"
+          value: ${MYSQL_DATABASE}
         - name: MYSQL_USER
-          value: "wordpress"
+          value: ${MYSQL_USER}
         - name: MYSQL_PASSWORD
-          value: "wordpress"
+          value: ${MYSQL_PASSWORD}

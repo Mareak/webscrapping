@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: mareackr.azurecr.io/webscrapping_nginx:v1.24
+        image: ${AZURE_SERVER_REG}/webscrapping_nginx:${TAG}
         ports:
         - containerPort: 443
           protocol: TCP

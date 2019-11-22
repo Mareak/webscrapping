@@ -2,6 +2,11 @@ FROM debian:buster-slim
 
 COPY . .
 
+ARG MYSQL_ROOT_PASSWORD
+ARG MYSQL_DATABASE
+ARG MYSQL_USER
+ARG MYSQL_PASSWORD
+ARG SECRET_KEY
 ARG ARM_SUBSCRIPTION_ID
 ARG ARM_CLIENT_ID
 ARG ARM_CLIENT_SECRET
@@ -18,7 +23,12 @@ ENV ARM_CLIENT_ID=$ARM_CLIENT_ID \
 	AZURE_PASSWORD_REG=$AZURE_PASSWORD_REG \
 	AZURE_SERVER_REG=$AZURE_SERVER_REG \
 	ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID \
-	TAG=$TAG
+	TAG=$TAG \
+    MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+    MYSQL_DATABASE=$MYSQL_DATABASE \
+    MYSQL_USER=$MYSQL_USER \
+    MYSQL_PASSWORD=$MYSQL_PASSWORD \
+    SECRET_KEY=$SECRET_KEY 
 
 RUN apt update -qq && apt install -qqy ca-certificates curl apt-transport-https lsb-release gnupg wget unzip \
 	&& curl -sL https://packages.microsoft.com/keys/microsoft.asc |gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
