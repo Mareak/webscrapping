@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webscrapping
+spec:
+  selector:
+    matchLabels:
+      app: webscrapping
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webscrapping
+    spec:
+      containers:
+      - name: webscrapping
+        image: mareackr.azurecr.io/webscrapping_webscrapping:v1.24
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: SECRET_KEY
+          value: "SECRET"
+        - name: MYSQL_DATABASE
+          value: "wordpress"
+        - name: MYSQL_USER
+          value: "wordpress"
+        - name: MYSQL_PASSWORD
+          value: "wordpress"

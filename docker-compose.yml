@@ -27,8 +27,6 @@ services:
     build:
       context: .
       dockerfile: ./config/docker/Dockerfile.nginx
-    volumes:
-      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
       - 443:443
