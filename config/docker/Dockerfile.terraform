@@ -26,5 +26,9 @@ RUN apt update -qq && apt install -qqy ca-certificates curl apt-transport-https 
 	&& apt update -qq && apt install -qqy azure-cli \
 	&& export TER_VER="0.12.13" && wget https://releases.hashicorp.com/terraform/${TER_VER}/terraform_${TER_VER}_linux_amd64.zip \
 	&& unzip terraform_${TER_VER}_linux_amd64.zip && mv terraform /usr/local/bin/
+	&& apt-get update && apt-get install -y apt-transport-https
+	&& curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+	&& echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+	&&  apt-get update && apt-get install -y kubectl
 
 CMD ["bash", "./config/continuous-deployment/deploy.sh"]
