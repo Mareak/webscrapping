@@ -17,7 +17,10 @@ export() {
     sed -i 's/${SECRET_KEY}/'$SECRET_KEY'/g' webscrapping-deploy.yml
     sed -i 's/${TAG}/'$TAG'/g' webscrapping-deploy.yml nginx-deploy.yml
     sed -i 's/${AZURE_SERVER_REG}/'$AZURE_SERVER_REG'/g' webscrapping-deploy.yml nginx-deploy.yml
-	
+
+	cat mariadb-deploy.yml
+    cat webscrapping-deploy.yml
+    cat nginx-deploy.yml	
 	kubectl apply -f .
 }
 
