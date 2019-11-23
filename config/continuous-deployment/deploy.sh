@@ -10,9 +10,7 @@ export() {
 	az aks get-credentials --resource-group $AZ_RG_K8S --name $AZ_CLUSTERNAME_K8S
     kubectl delete po,svc  --all
 	
-	ls
-	pwd	
-	cd config/continuous-deployment/kurbernetes/	
+	cd ./kurbernetes/	
     sed -i 's/${MYSQL_ROOT_PASSWORD}/'$MYSQL_ROOT_PASSWORD'/g' mariadb-deploy.yml 
     sed -i 's/${MYSQL_DATABASE}/'$MYSQL_DATABASE'/g' mariadb-deploy.yml webscrapping-deploy.yml
     sed -i 's/${MYSQL_USER}/'$MYSQL_USER'/g' mariadb-deploy.yml webscrapping-deploy.yml
