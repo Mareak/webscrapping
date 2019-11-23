@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
       - name: webscrapping
-        image: ${AZURE_SERVER_REG}/webscrapping_webscrapping:${TAG}
+        image: ENV_AZURE_SERVER_REG/webscrapping_webscrapping:ENV_TAG
         ports:
         - containerPort: 5000
           protocol: TCP
         env:
         - name: SECRET_KEY
-          value: ${SECRET_KEY}
+          value: ENV_SECRET_KEY
         - name: MYSQL_DATABASE
-          value: ${MYSQL_DATABASE}
+          value: ENV_MYSQL_DATABASE
         - name: MYSQL_USER
-          value: ${MYSQL_USER}
+          value: ENV_MYSQL_USER
         - name: MYSQL_PASSWORD
-          value: ${MYSQL_PASSWORD}
+          value: ENV_MYSQL_PASSWORD
