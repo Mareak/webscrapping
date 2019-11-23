@@ -19,7 +19,8 @@ export() {
 	sed -i "s/ENV_AZURE_SERVER_REG/$AZURE_SERVER_REG/g" webscrapping-deploy.yml nginx-deploy.yml
 
 	kubectl apply -f .
-	sleep 10
+	sleep 60
+    kubect delete pod $(kubectl get pods | awk '/webscrapping/ {print $1;exit}')
     kubectl cp . $(kubectl get pods | awk '/mariadb/ {print $1;exit}'):/test
 }
 
