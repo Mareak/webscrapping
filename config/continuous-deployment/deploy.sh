@@ -10,6 +10,7 @@ export() {
     kubectl delete po,svc  --all
 	
 	cd ./config/continuous-deployment/kurbernetes/
+
 	sed -i "s/ENV_MYSQL_ROOT_PASSWORD/$MYSQL_ROOT_PASSWORD/g" mariadb-deploy.yml 
 	sed -i "s/ENV_MYSQL_DATABASE/$MYSQL_DATABASE/g" mariadb-deploy.yml webscrapping-deploy.yml
 	sed -i "s/ENV_MYSQL_USER/$MYSQL_USER/g" mariadb-deploy.yml webscrapping-deploy.yml
@@ -22,7 +23,6 @@ export() {
 	sleep 200
     kubectl delete pod $(kubectl get pods | awk '/webscrapping/ {print $1;exit}')
 	sleep 30
-    kubectl cp . $(kubectl get pods | awk '/mariadb/ {print $1;exit}'):/test
 }
 
 export
