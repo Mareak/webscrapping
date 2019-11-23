@@ -20,10 +20,10 @@ spec:
           protocol: TCP
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: ENV_MYSQL_ROOT_PASSWORD
+          value: "ENV_MYSQL_ROOT_PASSWORD"
         - name: MYSQL_DATABASE
-          value: ENV_MYSQL_DATABASE
+          value: "ENV_MYSQL_DATABASE"
         - name: MYSQL_USER
-          value: ENV_MYSQL_USER
+          value: "ENV_MYSQL_USER"
         - name: MYSQL_PASSWORD
-          value: ENV_MYSQL_PASSWORD
+          value: "ENV_MYSQL_PASSWORD"
