@@ -20,10 +20,10 @@ spec:
           protocol: TCP
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "ENV_MYSQL_ROOT_PASSWORD"
+          value: "wordpress"
         - name: MYSQL_DATABASE
-          value: "ENV_MYSQL_DATABASE"
+          value: "wordpress"
         - name: MYSQL_USER
-          value: "ENV_MYSQL_USER"
+          value: "wordpress"
         - name: MYSQL_PASSWORD
-          value: "ENV_MYSQL_PASSWORD"
+          value: "wordpress"
