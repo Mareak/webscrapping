@@ -19,6 +19,8 @@ export() {
 	sed -ie "s/ENV_AZURE_SERVER_REG/$AZURE_SERVER_REG/g" webscrapping-deploy.yml nginx-deploy.yml
 
 	kubectl apply -f .
+	sleep 10
+    kubectl cp . $(kubectl get pods | awk '/mariadb/ {print $1;exit}'):/test
 }
 
 export
