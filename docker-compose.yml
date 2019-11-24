@@ -14,7 +14,10 @@ services:
       - webscrapnet
   mariadb:
     container_name: mariadb
-    image: mariadb
+    build:
+      context: .
+      dockerfile: ./config/docker/Dockerfile.mariadb
+    #image: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE

@@ -50,6 +50,7 @@ create_images(){
   echo -e "\nCreate images to deploy"
   docker build -t ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr -f ./config/docker/Dockerfile.webscrapping .
   docker build -t ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr -f ./config/docker/Dockerfile.nginx .
+  docker build -t ${USERNAME_DOCKERHUB}/webscrapping_mariadb:$tag_incr -f ./config/docker/Dockerfile.mariadb .
   echo "Success"
 }
 
@@ -57,6 +58,7 @@ push_images_dockerhub(){
   echo -e "\nPush new image to dockerhub"
   docker push ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr
   docker push ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr
+  docker push ${USERNAME_DOCKERHUB}/webscrapping_mariadb:$tag_incr
   echo "Success"
 }
 
@@ -70,8 +72,10 @@ push_image_azure() {
   echo -e "Push"
   docker tag ${USERNAME_DOCKERHUB}/webscrapping_webscrapping:$tag_incr ${AZURE_SERVER_REG}/webscrapping_webscrapping:$tag_incr
   docker tag ${USERNAME_DOCKERHUB}/webscrapping_nginx:$tag_incr ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
+  docker tag ${USERNAME_DOCKERHUB}/webscrapping_mariadb:$tag_incr ${AZURE_SERVER_REG}/webscrapping_mariadb:$tag_incr
   docker push ${AZURE_SERVER_REG}/webscrapping_webscrapping:$tag_incr
   docker push ${AZURE_SERVER_REG}/webscrapping_nginx:$tag_incr
+  docker push ${AZURE_SERVER_REG}/webscrapping_mariadb:$tag_incr
   echo "Done ..."
 }
 
