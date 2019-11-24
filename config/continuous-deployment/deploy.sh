@@ -13,8 +13,8 @@ export() {
 	sed -i "s/ENV_MYSQL_USER/$MYSQL_USER/g" mariadb-deploy.yml webscrapping-deploy.yml
 	sed -i "s/ENV_MYSQL_PASSWORD/$MYSQL_PASSWORD/g" mariadb-deploy.yml webscrapping-deploy.yml
 	sed -i "s/ENV_SECRET_KEY/$SECRET_KEY/g" webscrapping-deploy.yml
-	sed -i "s/ENV_TAG/$TAG/g" webscrapping-deploy.yml nginx-deploy.yml
-	sed -i "s/ENV_AZURE_SERVER_REG/$AZURE_SERVER_REG/g" webscrapping-deploy.yml nginx-deploy.yml
+	sed -i "s/ENV_TAG/$TAG/g" webscrapping-deploy.yml nginx-deploy.yml mariadb-deploy.yml
+	sed -i "s/ENV_AZURE_SERVER_REG/$AZURE_SERVER_REG/g" webscrapping-deploy.yml nginx-deploy.yml mariadb-deploy.yml
 
 	kubectl apply -f .
 	sleep 200
