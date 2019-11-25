@@ -8,3 +8,4 @@ It interact with Travis for CI/CD to finally get deployed on AZURE AKS.
 
 1. Configure variables for mariadb in the docker-compose file.
 2. Use docker-compose to run the project locally.
+3. Go to https://localhost and have fun :)
