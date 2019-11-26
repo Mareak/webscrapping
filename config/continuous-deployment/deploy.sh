@@ -26,6 +26,8 @@ export() {
 	sleep 200
     kubectl delete pod $(kubectl get pods | awk '/webscrapping/ {print $1;exit}')
 	sleep 30
+    kubectl delete pod $(kubectl get pods | awk '/webscrapping/ {print $1;exit}')
+	sleep 30
 }
 
 export
